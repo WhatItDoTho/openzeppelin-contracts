@@ -1317,7 +1317,7 @@ contract StrategyIronLend is StratManager, FeeManager {
     using SafeERC20 for IERC20;
     using SafeMath for uint256;
 
-    // Tokens used
+    // Tokens used, their Polygon addresses
     address constant public matic = address(0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270);
     address constant public eth = address(0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619);
     address constant public ice = address(0x4A81f8796e0c6Ad4877A51C86693B0dE8093F2ef);
@@ -1325,6 +1325,7 @@ contract StrategyIronLend is StratManager, FeeManager {
 
     // Third party contracts
     address public lendingPool;
+    // The IronDelegateController Contrnract
     address constant public incentivesController = address(0xF20fcd005AFDd3AD48C85d0222210fe168DDd10c);
 
     // Routes
@@ -1523,7 +1524,7 @@ contract StrategyIronLend is StratManager, FeeManager {
     }
 
     /**
-     * @dev Withdraws funds and sends them back to the vault. It deleverages from venus first,
+     * @dev Withdraws funds and sends them back to the vault. It deleverages from IronLend first,
      * and then deposits again after the withdraw to make sure it mantains the desired ratio.
      * @param _amount How much {want} to withdraw.
      */
